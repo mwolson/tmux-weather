@@ -8,7 +8,8 @@ get_forecast() {
   local format=$(get_tmux_option @forecast-format "%C+%t+%w")
   local location=$(get_tmux_option @forecast-location "") # Let wttr.in figure out the location
   local language=$(get_tmux_option @forecast-language "en")
-  curl "http://wttr.in/$location?format=$format&lang=$language"
+  local units=$(get_tmux_option @forecast-units "")
+  curl "http://wttr.in/$location?$units&format=$format&lang=$language"
 }
 
 get_cached_forecast() {
