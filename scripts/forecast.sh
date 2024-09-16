@@ -21,9 +21,11 @@ get_cached_forecast() {
     # if file does not exist or cache age is greater then configured duration
     if ! [ -f "$cache_path" ] || [ $cache_age -ge $cache_duration ]; then
       forecast=$(get_forecast)
-      # store forecast in $cache_path
-      mkdir -p "$(dirname "$cache_path")"
-      echo "$forecast" > "$cache_path"
+      if [ -n "$forecast" ]; then
+        # store forecast in $cache_path
+        mkdir -p "$(dirname "$cache_path")"
+        echo "$forecast" > "$cache_path"
+      fi
     else
       # otherwise try to get it from cache file
       forecast=$(cat "$cache_path" 2>/dev/null)
