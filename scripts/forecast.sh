@@ -9,7 +9,7 @@ get_forecast() {
   local location=$(get_tmux_option @forecast-location "") # Let wttr.in figure out the location
   local language=$(get_tmux_option @forecast-language "en")
   local units=$(get_tmux_option @forecast-units "")
-  curl "http://wttr.in/$location?$units&format=$format&lang=$language"
+  curl -f -s -m 5 "http://wttr.in/$location?$units&format=$format&lang=$language"
 }
 
 get_cached_forecast() {
@@ -39,7 +39,8 @@ get_cached_forecast() {
 print_forecast() {
   local char_limit=$(get_tmux_option @forecast-char-limit 75)
   local forecast=$(get_cached_forecast)
-  echo ${forecast:0:$char_limit}
+  echo ${forecast:0:$char_limit} | \
+    sed -e 's/ \++\?/  /' -e 's/mph$//'
 }
 
 main() {
