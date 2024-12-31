@@ -40,7 +40,7 @@ print_forecast() {
   local char_limit=$(get_tmux_option @forecast-char-limit 75)
   local forecast=$(get_cached_forecast)
   echo ${forecast:0:$char_limit} | \
-    sed -e 's/ \++\?/  /' -e 's/mph$//'
+    sed -E -e 's/ +\+?/  /' -e 's/[km]ph$//'
 }
 
 main() {
