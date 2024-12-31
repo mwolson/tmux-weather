@@ -72,7 +72,7 @@ set -g @forecast-cache-path "/tmp/tmux-weather.cache"
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
 ```bash
-set -g @plugin 'aaronpowell/tmux-weather'
+set -g @plugin 'mwolson/tmux-weather'
 ```
 
 Hit `prefix + I` to fetch the plugin and source it.
@@ -84,7 +84,7 @@ Hit `prefix + I` to fetch the plugin and source it.
 Clone the repo:
 
 ```bash
-$ git clone https://github.com/aaronpowell/tmux-weather ~/clone/path
+$ git clone https://github.com/mwolson/tmux-weather ~/clone/path
 ```
 
 Add this line to the bottom of `.tmux.conf`:
